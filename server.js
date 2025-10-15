@@ -6,12 +6,7 @@ const prisma = new PrismaClient()
 
 const app = express()
 app.use(express.json())
-app.use(cors({ origin: "*" }));
-
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("Conectado ao MongoDB Atlas"))
-  .catch((err) => console.error("Erro de conexão:", err));
+app.use(cors());
   
 app.post('/usuarios', async (req, res) => {
 
