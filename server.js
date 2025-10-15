@@ -10,16 +10,33 @@ app.use(cors({ origin: "frontend-phi-nine-78.vercel.app" }));
 
 app.post('/usuarios', async (req, res) => {
 
-    const user = await prisma.user.create({
-        data: {
-            name: req.body.name,
-            age: req.body.age,
-            email: req.body.email
-        }
-    })
-    res.status(201).json(user)
-}
-)
+    const { name, email, age } = req.body;
+
+    // ✅ Validação antes de criar
+    if (!name?.trim() || !email?.trim() || !age?.trim()) {
+        return res.status(400).json({ error: "Nome, email e idade são obrigatórios." });
+    }
+
+    try {
+        const user = await prisma.user.create({
+            data: {
+                name: req.body.name,
+                age: req.body.age,
+                email: req.body.email
+            }
+        })
+        res.status(201).json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao criar usuário." });
+    }
+
+    res.json(user);
+});
+
+
+
+
 
 app.get('/usuarios', async (req, res) => {
     const users = await prisma.user.findMany()
