@@ -1,27 +1,12 @@
 import express from 'express'
 import cors from 'cors'
 import { PrismaClient } from '@prisma/client'
-import dotenv from "dotenv";
 
 const prisma = new PrismaClient()
 
-dotenv.config();
-
 const app = express()
 app.use(express.json())
-app.use(cors({
-  origin: ["https://frontend-phi-nine-78.vercel.app"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
-
-// suas rotas aqui
-// ex: app.use("/api/usuarios", usuariosRouter);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+app.use(cors({ origin: "frontend-phi-nine-78.vercel.app" }));
 
 app.post('/usuarios', async (req, res) => {
 
