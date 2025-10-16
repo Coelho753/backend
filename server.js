@@ -6,7 +6,11 @@ const prisma = new PrismaClient()
 
 const app = express()
 app.use(express.json())
-app.use(cors({ origin: "frontend-phi-nine-78.vercel.app" }));
+app.use(cors({ origin: "frontend-phi-nine-78.vercel.app" 
+methods: ['GET', 'POST', 'PUT', 'DELETE'],
+credentials: true
+}));
+}));
 
 app.post('/usuarios', async (req, res) => {
 
