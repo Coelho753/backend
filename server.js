@@ -72,5 +72,3 @@ app.listen(3000, () => {
 })
 
 
-/*cNXo2xdPE5JYnxYc
-gustavocoelho2906_db_user*/
