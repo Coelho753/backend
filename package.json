@@ -5,11 +5,13 @@
   "description": "",
   "main": "index.js",
 
-"scripts": {
+
+  "scripts": {
+  "build": "npx prisma generate",
   "dev": "node server.js",
-  "start": "node server.js",
-  "build": "npx prisma generate"
+  "start": "node server.js"
 },
+
 
   "keywords": [],
   "author": "",
